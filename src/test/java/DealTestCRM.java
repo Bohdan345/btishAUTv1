@@ -6,7 +6,6 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import jdk.nashorn.internal.ir.annotations.Ignore;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static Utils.RandomData.*;
@@ -18,13 +17,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class DealTestCRM {
 
 
-    @Test
     @Ignore
     public void createDeal() {
 
     }
 
-    @Test
+
     public void createQuickDeal() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
@@ -64,7 +62,6 @@ public class DealTestCRM {
      * }
      **/
 
-    @Test
     @Ignore
     public void removeDealFromTable() {
         new LoginPage()
@@ -80,7 +77,7 @@ public class DealTestCRM {
 
     }
 
-    @Test
+
     @Ignore
     public void bulkRemoveDeal() {
     }
