@@ -42,3 +42,10 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+
+task login_test(type: Test){
+    useJUnitPlatform(){
+        includeTags("login")
+    }
+}

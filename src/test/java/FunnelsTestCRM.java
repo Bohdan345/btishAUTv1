@@ -44,7 +44,7 @@ public class FunnelsTestCRM {
 
     }
 
-    @Test
+
     @Feature("Funnels")
     @Ignore
     public void deleteFunnel() {
@@ -69,7 +69,7 @@ public class FunnelsTestCRM {
     }
 
 
-    @Test
+
     @Feature("Funnels")
     @Ignore
     public void renameFunnel() {
