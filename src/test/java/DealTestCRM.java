@@ -1,19 +1,20 @@
 import Pages.CRMPage;
 import Pages.LoginPage;
 import Pages.TableViewPage;
+import Utils.MyListener;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import static Pages.BasePage.destroy;
 import static Utils.RandomData.*;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
+@ExtendWith(MyListener.class)
 public class DealTestCRM {
 
 
@@ -43,7 +44,6 @@ public class DealTestCRM {
                 .chooseFirstProspectList()
                 .clickSaveQuickDealBtn();
         assertThat(name, is(containsString(crm.getDealFromStage(name))));
-        destroy();
 
 
     }
@@ -60,7 +60,7 @@ public class DealTestCRM {
      * .waitLoader();
      * crm.moveDealToDeleteZone();
      * Selenide.sleep(3000);
-     * destroy();
+     * <p>
      * }
      **/
 
@@ -76,7 +76,7 @@ public class DealTestCRM {
                 .clickTableViewBtn()
                 .setCheckBox();
         Selenide.sleep(3000);
-        destroy();
+
 
     }
 

@@ -1,23 +1,24 @@
 import Pages.CRMPage;
 import Pages.LoginPage;
+import Utils.MyListener;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Feature;
 import io.qameta.allure.selenide.AllureSelenide;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import static Pages.BasePage.destroy;
 import static Utils.RandomData.getRandomInt;
 import static Utils.RandomData.getRandomName;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
+@ExtendWith(MyListener.class)
 public class FunnelsTestCRM {
 
     @Test
     @Feature("Funnels")
-    @Ignore
+
     public void createFunnel() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
@@ -40,7 +41,7 @@ public class FunnelsTestCRM {
                 is(containsString(crmPage.getCurrentNameFunnel()))
         );
 
-        destroy();
+
     }
 
     @Test
@@ -64,7 +65,6 @@ public class FunnelsTestCRM {
 
         assertThat(name, not(containsString(crmPage.getCurrentNameFunnel())));
 
-        destroy();
 
     }
 
@@ -91,7 +91,7 @@ public class FunnelsTestCRM {
                 .waitInvisibleLoader();
 
         assertThat(name, not(containsString(crmPage.getCurrentNameFunnel())));
-        destroy();
+
     }
 
 
