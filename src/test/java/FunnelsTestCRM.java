@@ -1,23 +1,28 @@
 import Pages.CRMPage;
 import Pages.LoginPage;
 import Utils.MyListener;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.Feature;
 import io.qameta.allure.selenide.AllureSelenide;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static Utils.RandomData.getRandomInt;
 import static Utils.RandomData.getRandomName;
+import static com.codeborne.selenide.Selenide.open;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @ExtendWith(MyListener.class)
 public class FunnelsTestCRM {
 
+
     @Test
-    @Feature("Funnels")
+    public void test() {
+        open("https://www.google.com/");
+        Selenide.sleep(5000);
+
+    }
 
     public void createFunnel() {
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -45,8 +50,6 @@ public class FunnelsTestCRM {
     }
 
 
-    @Feature("Funnels")
-    @Ignore
     public void deleteFunnel() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
@@ -69,9 +72,6 @@ public class FunnelsTestCRM {
     }
 
 
-
-    @Feature("Funnels")
-    @Ignore
     public void renameFunnel() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
