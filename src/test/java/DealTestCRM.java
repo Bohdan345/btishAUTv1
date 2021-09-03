@@ -17,7 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class DealTestCRM {
 
 
-    @Ignore
+
     public void createDeal() {
 
     }

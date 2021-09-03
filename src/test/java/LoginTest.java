@@ -9,8 +9,7 @@ import static Pages.BasePage.destroy;
 public class LoginTest {
 
 
-    @Test
-    @Tag("login")
+
     public void login() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
