@@ -1,5 +1,7 @@
 package Pages;
 
+import Elements.Button;
+import Elements.InputField;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.enabled;
@@ -14,6 +16,8 @@ public class ToolBarSettingsPage {
     private static final SelenideElement backBtn = $("#backId");
 
     BasePage basePage = new BasePage();
+    Button button = new Button();
+    InputField inputField = new InputField();
 
     public void setNameInputModal(String text) {
         modalNameInput.val(text);
@@ -33,9 +37,9 @@ public class ToolBarSettingsPage {
 
 
     public ToolBarSettingsPage setFunnelNameToolBar(String name) {
-        basePage.click(funnelNameToolBar);
-        basePage.cleanInput(funnelNameToolBar);
-        basePage.setValue(funnelNameToolBar, name);
+        button.click(funnelNameToolBar);
+        inputField.cleanInput(funnelNameToolBar);
+        inputField.setValue(funnelNameToolBar, name);
         return this;
     }
 

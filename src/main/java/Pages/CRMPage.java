@@ -1,5 +1,8 @@
 package Pages;
 
+import Elements.Button;
+import Elements.DropDown;
+import Elements.InputField;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -25,9 +28,9 @@ public class CRMPage {
     private static final SelenideElement modalNameInput = $(".snovio-modal__window input");
     private static final SelenideElement funnelName = $(".snovio-dropdown__name");
     private static final SelenideElement modalConfirmButton = $(".snovio-btn--gray + button");
-    private static final ElementsCollection prospectsLists = $$x("//div[@class='deal__create']//ul[@class='snovio-dropdown__list']");
+
     private static final ElementsCollection createdDeals = $$(".deal__name");
-    private static final ElementsCollection listSticky = $$(".snovio-dropdown__list--sticky    span");
+
     private static final SelenideElement dealTitle = $(".deal-head__name");
     private static final SelenideElement checkIcon = $(".icon-small");
     private static final SelenideElement toolBarSettings = $(".toolbar__settings");
@@ -36,42 +39,51 @@ public class CRMPage {
     private static final SelenideElement deleteZone = $x("//div[@data-status='delete'])");
     private static final SelenideElement tableViewButton = $x(" //div[@class ='toolbar__tabs']/a[2]");
 
+    private static final SelenideElement funnelsList = $x("//div[@class='snovio-dropdown__drop']/ul[1]");
+    private static final SelenideElement funnelBtnList = $x("//div[@class='snovio-dropdown__drop']/ul[2] ");
+    private static final SelenideElement prospectsLists = $(".deal__dropdown ul");
 
     BasePage basePage = new BasePage();
+    Button button = new Button();
+    InputField inputField = new InputField();
+    DropDown dropDown = new DropDown();
 
 
     public TableViewPage clickTableViewBtn() {
-        basePage.click(tableViewButton);
+        button.click(tableViewButton);
         return new TableViewPage();
     }
+
+
+
 
     public CRMPage moveDealToDeleteZone() {
         basePage.dragAndDrop(leadInFirstDeal, deleteZone);
         return this;
     }
 
-
+    //  refactor
     public String getDealFromStage(String dealName) {
         return createdDeals.findBy(exactText(dealName)).getText();
     }
 
     public CRMPage clickQuickDealBtn() {
-        basePage.click(quickAddButton);
+        button.click(quickAddButton);
         return this;
 
     }
 
     public CRMPage setDealName(String name) {
-        basePage.cleanInput(dealNameInput);
-        basePage.setValue(dealNameInput, name);
+        inputField.cleanInput(dealNameInput);
+        inputField.setValue(dealNameInput, name);
 
         return this;
 
     }
 
     public CRMPage setDealPrice(String price) {
-        basePage.cleanInput(priceInput);
-        basePage.setValue(priceInput, price);
+        inputField.cleanInput(priceInput);
+        inputField.setValue(priceInput, price);
 
 
         return this;
@@ -79,33 +91,35 @@ public class CRMPage {
     }
 
     public CRMPage setDealProspect(String name) {
-        basePage.cleanInput(nameProspectInput);
-        basePage.setValue(nameProspectInput, name);
+        inputField.cleanInput(nameProspectInput);
+        inputField.setValue(nameProspectInput, name);
 
         return this;
 
     }
 
     public CRMPage setDealEmail(String email) {
-        basePage.cleanInput(emailProspectInput);
-        basePage.setValue(emailProspectInput, email);
+        inputField.cleanInput(emailProspectInput);
+        inputField.setValue(emailProspectInput, email);
         return this;
     }
 
-
+    // refactor
     public CRMPage clickProspectDropDown() {
-        basePage.click(prospectsListDropDown);
+        button.click(prospectsListDropDown);
         return this;
     }
 
-    public CRMPage chooseFirstProspectList() {
-        basePage.clickAndChooseFirstItem(prospectsLists);
+
+    //refactor
+    public CRMPage chooseProspectList(int listIndex) {
+        button.click(dropDown.getByIndex(prospectsLists, listIndex));
         return this;
 
     }
 
     public CRMPage clickSaveQuickDealBtn() {
-        basePage.click(saveQickDeal);
+        button.click(saveQickDeal);
         return this;
     }
 
@@ -123,12 +137,12 @@ public class CRMPage {
 
     public CRMPage clickFunnelDropDown() {
 
-        basePage.click(funnelDropDown);
+        button.click(funnelDropDown);
         return this;
     }
 
     public CRMPage checkChooseIcon() {
-        basePage.click(checkIcon);
+        button.click(checkIcon);
         return this;
     }
 
@@ -140,7 +154,8 @@ public class CRMPage {
 
 
     public CRMPage clickNewPiplineButton() {
-        listSticky.findBy(exactText("New pipeline")).click();
+        button.click(dropDown.getByIndex(funnelBtnList, 2));
+
         return this;
     }
 
@@ -152,13 +167,22 @@ public class CRMPage {
 
 
     public CRMPage clickConfirmModalButton() {
-        basePage.click(modalConfirmButton);
+        button.click(modalConfirmButton);
         return this;
     }
 
 
-    public CRMPage getFirstFunnel() {
-        funnelList.first().shouldBe(visible).click();
+    public CRMPage getFunnel(int funnelNumber) {
+        button.click(dropDown.getByIndex(funnelsList, funnelNumber));
+        return this;
+    }
+
+    public int getFunnelListSize() {
+        return funnelList.size();
+    }
+
+    public CRMPage getLastFunnel() {
+        button.click(dropDown.getLastItem(funnelsList));
         return this;
     }
 
