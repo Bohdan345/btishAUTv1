@@ -7,7 +7,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Selenide.$;
 
-public class ToolBarSettingsPage {
+public class FunnelEditPage {
 
     private static final SelenideElement deleteFunnelButton = $(".toolbar__delete");
     private static final SelenideElement modalConfirmButton = $(".snovio-btn--gray + button");
@@ -30,13 +30,13 @@ public class ToolBarSettingsPage {
         return new CRMPage();
     }
 
-    public ToolBarSettingsPage clickDeleteFunnelButton() {
+    public FunnelEditPage clickDeleteFunnelButton() {
         deleteFunnelButton.shouldBe(enabled).click();
         return this;
     }
 
 
-    public ToolBarSettingsPage setFunnelNameToolBar(String name) {
+    public FunnelEditPage setFunnelNameToolBar(String name) {
         button.click(funnelNameToolBar);
         inputField.cleanInput(funnelNameToolBar);
         inputField.setValue(funnelNameToolBar, name);

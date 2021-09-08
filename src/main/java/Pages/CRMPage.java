@@ -203,9 +203,9 @@ public class CRMPage {
         return this;
     }
 
-    public ToolBarSettingsPage clickToolBarBtn() {
+    public FunnelEditPage clickToolBarBtn() {
         toolBarSettings.shouldBe(enabled).click();
-        return new ToolBarSettingsPage();
+        return new FunnelEditPage();
 
     }
 
